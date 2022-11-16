@@ -3,6 +3,8 @@ import * as yup from 'yup';
 import PropTypes from 'prop-types';
 import { Button, Input, Label } from './ContactForm.styles';
 import FormError from 'components/FormError/FormError';
+import { useDispatch } from 'react-redux';
+import { addContact } from 'redux/contacts/slice';
 
 const initialValues = {
     name: '',
@@ -19,9 +21,11 @@ const validationSchema = yup.object().shape({
     number: yup.string().matches(phoneRegExp, 'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +').required('Please fill in the number'),
 });
 
-export default function ContactForm({addContact}) {
-    const handleSubmit = (values, {resetForm}) => {
-        addContact(values);
+export default function ContactForm() {
+    const dispatch = useDispatch();
+
+    const handleSubmit = (values, { resetForm }) => {
+        dispatch(addContact(values));
         resetForm();
     };
 
@@ -53,6 +57,6 @@ export default function ContactForm({addContact}) {
     );
 };
 
-ContactForm.propTypes = {
-    addContact: PropTypes.func.isRequired,
-};
+// ContactForm.propTypes = {
+//     addContact: PropTypes.func.isRequired,
+// };
