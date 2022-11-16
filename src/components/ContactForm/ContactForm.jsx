@@ -1,6 +1,5 @@
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
-// import PropTypes from 'prop-types';
 import { Button, Input, Label } from './ContactForm.styles';
 import FormError from 'components/FormError/FormError';
 import { useDispatch } from 'react-redux';
@@ -56,7 +55,3 @@ export default function ContactForm() {
         </Formik>
     );
 };
-
-// ContactForm.propTypes = {
-//     addContact: PropTypes.func.isRequired,
-// };

@@ -1,28 +1,15 @@
-// import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-// const filterSlice = createSlice({
-//   name: 'filter',
-//   initialState: '',
-//   reducers: {
-//     changeFilter(state, action) {},
-//   },
-// });
+const filterSlice = createSlice({
+  name: 'filter',
+  initialState: '',
+  reducers: {
+    changeFilter(_, action) {
+      return action.payload;
+    },
+  },
+});
 
-// // Генераторы экшенов
-// const { addTask, deleteTask, toggleCompleted } = tasksSlice.actions;
-// // Редюсер слайса
-// const tasksReducer = tasksSlice.reducer;
+export const { changeFilter } = filterSlice.actions;
 
-//   const changeFilter = e => {
-//     setFilter(e.target.value);
-//   };
-
-//   const getFilteredContacts = () => {
-//     const normalizedFilter = filter.toLowerCase();
-
-//     return contacts.filter(contact =>
-//       contact.name.toLowerCase().includes(normalizedFilter)
-//     );
-//   };
-
-//   const filteredContacts = getFilteredContacts();
+export const filterReducer = filterSlice.reducer;
