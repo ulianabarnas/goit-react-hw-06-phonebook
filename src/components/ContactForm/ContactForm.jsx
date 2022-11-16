@@ -1,6 +1,6 @@
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { Button, Input, Label } from './ContactForm.styles';
 import FormError from 'components/FormError/FormError';
 import { useDispatch } from 'react-redux';

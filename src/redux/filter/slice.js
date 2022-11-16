@@ -1,12 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
+// import { createSlice } from '@reduxjs/toolkit';
 
-const filterSlice = createSlice({
-  name: 'filter',
-  initialState: '',
-  reducers: {
-    changeFilter(state, action) {},
-  },
-});
+// const filterSlice = createSlice({
+//   name: 'filter',
+//   initialState: '',
+//   reducers: {
+//     changeFilter(state, action) {},
+//   },
+// });
 
 // // Генераторы экшенов
 // const { addTask, deleteTask, toggleCompleted } = tasksSlice.actions;

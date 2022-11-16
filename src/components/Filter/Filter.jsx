@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { FilterInput, FilterLabel } from "./Filter.styles";
 
 export default function Filter({value, onChange}) {

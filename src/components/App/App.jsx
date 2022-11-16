@@ -3,7 +3,7 @@
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import ContactForm from 'components/ContactForm/ContactForm';
 import ContactList from 'components/ContactList/ContactList';
-import Filter from 'components/Filter/Filter';
+// import Filter from 'components/Filter/Filter';
 import Box from 'components/Box/Box';
 import { Subtitle, Title } from './App.styles';
 // import useLocalStorage from 'hooks/useLocalStorage';
