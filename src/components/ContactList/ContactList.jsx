@@ -4,7 +4,8 @@ import { getContacts, getFilter } from 'redux/selectors';
 import { ContactButton, Icon, Item, List } from "./ContactList.styles";
 
 export default function ContactList() {
-  const contacts = useSelector(getContacts);
+  const {contacts} = useSelector(getContacts);
+  console.log(contacts);
   const filter = useSelector(getFilter);
   const dispatch = useDispatch();
 

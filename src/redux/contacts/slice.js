@@ -1,24 +1,28 @@
+import { createSlice, nanoid } from '@reduxjs/toolkit';
 import { Notify } from 'notiflix';
-
-const { createSlice, nanoid } = require('@reduxjs/toolkit');
+import persistReducer from 'redux-persist/es/persistReducer';
+import storage from 'redux-persist/lib/storage';
 
 export const contactsSlice = createSlice({
   name: 'contacts',
-  initialState: [],
+  initialState: { contacts: [] },
   reducers: {
     addContact: {
       reducer(state, action) {
+        console.log(state);
+        console.log(action);
         const { name } = action.payload;
+        console.log(name);
 
         const isDublicate = name => {
-          return state.find(
+          return state.contacts.find(
             contact => contact.name.toLowerCase() === name.toLowerCase()
           );
         };
 
         isDublicate(name)
           ? Notify.info(`${name} is already in contacts.`)
-          : state.push(action.payload);
+          : state.contacts.push(action.payload);
       },
       prepare(contact) {
         return {
@@ -30,14 +34,25 @@ export const contactsSlice = createSlice({
       },
     },
     deleteContact(state, action) {
-      return state.filter(item => item.id !== action.payload);
+      console.log('!!!!');
+      return state.contacts.filter(item => item.id !== action.payload);
     },
   },
 });
 
-export const { addContact, deleteContact } = contactsSlice.actions;
+const persistConfig = {
+  key: 'contacts',
+  storage,
+};
 
-export const contactsReducer = contactsSlice.reducer;
+// const contactsReducer = contactsSlice.reducer;
+
+export const persistedContactsReducer = persistReducer(
+  persistConfig,
+  contactsSlice.reducer
+);
+
+export const { addContact, deleteContact } = contactsSlice.actions;
 
 Notify.init({
   position: 'center-top',
