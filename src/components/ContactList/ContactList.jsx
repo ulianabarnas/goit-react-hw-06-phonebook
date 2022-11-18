@@ -5,7 +5,6 @@ import { ContactButton, Icon, Item, List } from "./ContactList.styles";
 
 export default function ContactList() {
   const {contacts} = useSelector(getContacts);
-  console.log(contacts);
   const filter = useSelector(getFilter);
   const dispatch = useDispatch();
 
@@ -17,18 +16,18 @@ export default function ContactList() {
 
   const filteredContacts = getFilteredContacts();
 
-  const elements = filteredContacts.map(({name, number, id}) => {
+  const elements = filteredContacts.map(({ name, number, id }) => {
     return (
       <Item key={id}><Icon />{name}: {number}
-      <ContactButton
-        type="button"
-        onClick={() => dispatch(deleteContact(id))}
-      >
-        Delete
-      </ContactButton>
+        <ContactButton
+          type="button"
+          onClick={() => dispatch(deleteContact(id))}
+        >
+          Delete
+        </ContactButton>
       </Item>
     )
-  })
+  });
   
   return (
     <List>

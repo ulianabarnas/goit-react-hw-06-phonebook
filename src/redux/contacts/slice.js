@@ -1,5 +1,4 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit';
-import { Notify } from 'notiflix';
 import persistReducer from 'redux-persist/es/persistReducer';
 import storage from 'redux-persist/lib/storage';
 
@@ -9,17 +8,7 @@ export const contactsSlice = createSlice({
   reducers: {
     addContact: {
       reducer(state, action) {
-        const { name } = action.payload;
-
-        const isDublicate = name => {
-          return state.contacts.find(
-            contact => contact.name.toLowerCase() === name.toLowerCase()
-          );
-        };
-
-        isDublicate(name)
-          ? Notify.info(`${name} is already in contacts.`)
-          : state.contacts.push(action.payload);
+        state.contacts.push(action.payload);
       },
       prepare(contact) {
         return {
@@ -32,7 +21,6 @@ export const contactsSlice = createSlice({
     },
 
     deleteContact(state, action) {
-      console.log(action);
       return {
         contacts: state.contacts.filter(item => item.id !== action.payload),
       };
@@ -51,10 +39,3 @@ export const persistedContactsReducer = persistReducer(
 );
 
 export const { addContact, deleteContact } = contactsSlice.actions;
-
-Notify.init({
-  position: 'center-top',
-  fontSize: '16px',
-  timeout: 4000,
-  width: '400px',
-});

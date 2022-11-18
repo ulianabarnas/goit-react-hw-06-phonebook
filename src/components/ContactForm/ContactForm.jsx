@@ -2,8 +2,10 @@ import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import { Button, Input, Label } from './ContactForm.styles';
 import FormError from 'components/FormError/FormError';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/slice';
+import { getContacts } from 'redux/selectors';
+import { Notify } from 'notiflix';
 
 const initialValues = {
     name: '',
@@ -20,10 +22,29 @@ const validationSchema = yup.object().shape({
     number: yup.string().matches(phoneRegExp, 'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +').required('Please fill in the number'),
 });
 
+Notify.init({
+  position: 'center-top',
+  fontSize: '16px',
+  timeout: 4000,
+  width: '400px',
+});
+
 export default function ContactForm() {
     const dispatch = useDispatch();
+    const { contacts } = useSelector(getContacts);
 
     const handleSubmit = (values, { resetForm }) => {
+
+        function isDublicateName (values) {
+            return contacts.find(
+            contact => contact.name.toLowerCase() === values.name.toLowerCase()
+            );
+        };
+
+        if(isDublicateName(values)){
+            return Notify.info(`${values.name} is already in contacts.`)
+        }
+
         dispatch(addContact(values));
         resetForm();
     };
