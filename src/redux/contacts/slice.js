@@ -9,10 +9,7 @@ export const contactsSlice = createSlice({
   reducers: {
     addContact: {
       reducer(state, action) {
-        console.log(state);
-        console.log(action);
         const { name } = action.payload;
-        console.log(name);
 
         const isDublicate = name => {
           return state.contacts.find(
@@ -33,9 +30,12 @@ export const contactsSlice = createSlice({
         };
       },
     },
+
     deleteContact(state, action) {
-      console.log('!!!!');
-      return state.contacts.filter(item => item.id !== action.payload);
+      console.log(action);
+      return {
+        contacts: state.contacts.filter(item => item.id !== action.payload),
+      };
     },
   },
 });
@@ -44,8 +44,6 @@ const persistConfig = {
   key: 'contacts',
   storage,
 };
-
-// const contactsReducer = contactsSlice.reducer;
 
 export const persistedContactsReducer = persistReducer(
   persistConfig,

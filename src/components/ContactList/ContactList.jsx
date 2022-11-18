@@ -18,14 +18,16 @@ export default function ContactList() {
   const filteredContacts = getFilteredContacts();
 
   const elements = filteredContacts.map(({name, number, id}) => {
-    return <Item key={id}><Icon/>{name}: {number}
+    return (
+      <Item key={id}><Icon />{name}: {number}
       <ContactButton
         type="button"
         onClick={() => dispatch(deleteContact(id))}
       >
         Delete
       </ContactButton>
-    </Item>
+      </Item>
+    )
   })
   
   return (
