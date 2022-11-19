@@ -31,7 +31,7 @@ Notify.init({
 
 export default function ContactForm() {
     const dispatch = useDispatch();
-    const { contacts } = useSelector(getContacts);
+    const contacts = useSelector(getContacts);
 
     const handleSubmit = (values, { resetForm }) => {
 
